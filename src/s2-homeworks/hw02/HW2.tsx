@@ -13,7 +13,7 @@ import s2 from '../../s1-main/App.module.css'
 * 8 - в файле Affairs.tsx дописать логику функций setAll, setHigh, setMiddle, setLow ///
 * 9 - в файле Affair.tsx дописать типизацию пропсов//
 * 10 - в файле Affair.tsx дописать функции deleteCallback и использовать///
-* 11 - в файле Affair.tsx отобразить приходящие данные
+* 11 - в файле Affair.tsx отобразить приходящие данные//
 * */
 
 // types

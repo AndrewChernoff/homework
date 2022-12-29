@@ -18,6 +18,7 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
     onChangeText?: (value: string) => void
     onEnter?: () => void
     error?: ReactNode
+    setError?: (value: string) => void
     spanClassName?: string
 }
 
@@ -31,11 +32,13 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         className,
         spanClassName,
         id,
+        setError,
 
         ...restProps // все остальные пропсы попадут в объект restProps
     }
 ) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+        setError && setError('')
         onChange?.(e) // если есть пропс onChange, то передать ему е (поскольку onChange не обязателен)
 
         onChangeText?.(e.currentTarget.value)

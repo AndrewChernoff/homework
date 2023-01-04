@@ -1,5 +1,5 @@
-import React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import Error404 from './pages/Error404'
 import PreJunior from './pages/PreJunior'
 import Junior from './pages/Junior'
@@ -12,6 +12,14 @@ export const PATH = {
 }
 
 function Pages() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        navigate("/pre-junior");
+      }, []);
+  
+
     return (
         <div>
             {/*Routes выбирает первый подходящий роут*/}

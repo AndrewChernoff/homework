@@ -13,20 +13,20 @@ export const PATH = {
 
 function Pages() {
 
-    const navigate = useNavigate();
+    /* const navigate = useNavigate();
 
     useEffect(() => {
         navigate("/pre-junior");
-      }, []);
+      }, []); */
   
-
+    
     return (
         <div>
             {/*Routes выбирает первый подходящий роут*/}
             <Routes>
 
-                
-        <Route index  path="pre-junior" element={<PreJunior />} />
+        <Route path='/' element={<Navigate to={'pre-junior'} />}/>
+        <Route path="pre-junior" element={<PreJunior />} />
         <Route path="junior" element={<Junior />}/>
         <Route path="junior-plus" element={<JuniorPlus />} />
         <Route path="*" element={<Error404 />} />

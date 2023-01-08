@@ -45,12 +45,13 @@
     color: #58ACFF;
 }
 
-.nav .clicked {
+.nav .active {
     font-weight: 600;
     font-size: 22px;
     text-decoration-line: underline;
     color: #0059B2;
 }
+
 .close {
     position: absolute;
     top: 3%;

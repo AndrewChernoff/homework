@@ -45,7 +45,7 @@
     color: #58ACFF;
 }
 
-.nav .active {
+.nav .clicked {
     font-weight: 600;
     font-size: 22px;
     text-decoration-line: underline;

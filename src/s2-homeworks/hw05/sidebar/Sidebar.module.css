@@ -44,7 +44,7 @@
     color: #58ACFF;
 }
 
-.nav a.activeLink {
+.nav .active {
     font-weight: 600;
     font-size: 22px;
     text-decoration-line: underline;

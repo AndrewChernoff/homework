@@ -1,4 +1,7 @@
-.input:focus {}
+.input:focus {
+    border: 1px solid #D1D1D1;
+    outline: none;
+}
 
 .input {
     height: 36px;

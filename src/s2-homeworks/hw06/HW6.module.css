@@ -1,5 +1,17 @@
 .buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    max-width: 280px;
+    margin-top: 16px;
 }
 
 .editableSpanContainer {
+}
+
+.hw6_save_btn {
+    background: #0066CC;
+}
+
+.hw6_restore_btn {
+    border: #0066CC 1 px solid;
 }

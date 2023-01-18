@@ -1,15 +1,24 @@
 .radio {
+    accent-color: #000000;
+
 }
 
 .radio::before {
+    
 }
 
 
 .radio:checked::before {
+    
 }
 
 .label {
+    display: flex;
+    gap: 13px;
 }
 
 .options {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
 }

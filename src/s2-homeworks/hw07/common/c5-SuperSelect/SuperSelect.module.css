@@ -1,9 +1,25 @@
 .select {
-}
+    width: 180px;
+    height: 28px;
+    padding: 2px;
+ }
 
 .select:focus {
+    cursor: pointer;
 }
 
 
+.option:checked {
+    color: #fff;
+    background: #0066CC;
+} 
 .option:hover {
+    background: #0066CC;
+
+}
+
+.option:hover {
+    cursor: pointer;
+    color: #0066CC;
+    background: #fff;
 }

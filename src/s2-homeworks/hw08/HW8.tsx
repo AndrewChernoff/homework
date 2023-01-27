@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {homeWorkReducer} from './bll/homeWorkReducer'
+import React, {useReducer, useState} from 'react'
+import { homeWorkReducer} from './bll/homeWorkReducer'
 import s from './HW8.module.css'
 import s2 from '../../s1-main/App.module.css'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
@@ -28,8 +28,8 @@ const initialPeople: UserType[] = [
 ]
 
 const HW8 = () => {
-    const [people, setPeople] = useState<UserType[]>(initialPeople)
-    const [currentSort, setCurrentSort] = useState('')
+    const [people, setPeople] = useState(initialPeople)
+    const [currentSort, setCurrentSort] = useState('up')
 
     const finalPeople = people.map((u: UserType) => <User key={u._id} u={u}/>)
 
@@ -84,13 +84,13 @@ const HW8 = () => {
 
                     <table id={'hw8-users'} className={s.users}>
                         <thead className={s.thead}>
-                        <tr>
+                         <tr>
                             <td className={s.nameCol}>Name</td>
                             <td className={s.ageCol}>Age</td>
                         </tr>
                         </thead>
 
-                        <tbody>{finalPeople}</tbody>
+                         <tbody>{finalPeople}</tbody> 
                     </table>
                 </div>
             </div>

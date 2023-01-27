@@ -13,13 +13,6 @@ export const PATH = {
 
 function Pages() {
 
-    /* const navigate = useNavigate();
-
-    useEffect(() => {
-        navigate("/pre-junior");
-      }, []); */
-  
-    
     return (
         <div>
             {/*Routes выбирает первый подходящий роут*/}

@@ -23,7 +23,6 @@
 .more {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
     font-weight: 400;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.5);

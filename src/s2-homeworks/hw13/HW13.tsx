@@ -42,22 +42,22 @@ const HW13 = () => {
                 // дописать
                 console.log(res);
                 setInfo('')
-                setText(res.data.info)
+                setText(res.data.errorText)
                 setIsDisabled(false)
             })
             .catch((e) => {
                 // дописать
-                if(x === false) {
+                if(x === false) {                    
                     setCode('Код 500!')
                     setImage(error500)
                     setInfo('')
-                    setText(e.message)
+                    setText(e.response.data.errorText)
                     setIsDisabled(false)
                 } else if (x === undefined) {
                     setCode('Код 400!')
                     setImage(error400)
                     setInfo('')
-                    setText(e.message)
+                    setText(e.response.data.errorText)
                     setIsDisabled(false)
                 } else if (x === null) {
                     setCode('Error!')

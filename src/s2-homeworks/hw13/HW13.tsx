@@ -37,11 +37,13 @@ const HW13 = () => {
         axios
             .post(url, {success: x})
             .then((res) => {
+                console.log(res);
+                
                 setCode('Код 200!')
                 setImage(success200)
                 // дописать
                 console.log(res);
-                setInfo('')
+                setInfo(res.data.info)
                 setText(res.data.errorText)
                 setIsDisabled(false)
             })
@@ -50,19 +52,19 @@ const HW13 = () => {
                 if(x === false) {                    
                     setCode('Код 500!')
                     setImage(error500)
-                    setInfo('')
+                    setInfo(e.message)
                     setText(e.response.data.errorText)
                     setIsDisabled(false)
                 } else if (x === undefined) {
                     setCode('Код 400!')
                     setImage(error400)
-                    setInfo('')
+                    setInfo(e.message)
                     setText(e.response.data.errorText)
                     setIsDisabled(false)
                 } else if (x === null) {
                     setCode('Error!')
                     setImage(errorUnknown)
-                    setInfo('')
+                    setInfo(e.name)
                     setText(e.message)
                     setIsDisabled(false)
                 }

@@ -52,13 +52,13 @@ const HW13 = () => {
                 if(x === false) {                    
                     setCode('Код 500!')
                     setImage(error500)
-                    setInfo(e.message)
+                    setInfo(e.response.data.info)
                     setText(e.response.data.errorText)
                     setIsDisabled(false)
                 } else if (x === undefined) {
                     setCode('Код 400!')
                     setImage(error400)
-                    setInfo(e.message)
+                    setInfo(e.response.data.info)
                     setText(e.response.data.errorText)
                     setIsDisabled(false)
                 } else if (x === null) {

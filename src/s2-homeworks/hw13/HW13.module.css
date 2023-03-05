@@ -12,9 +12,9 @@
 
 .responseContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    max-width: 60%;
+    max-width: 80%;
     margin-top: 40px;
 }
 

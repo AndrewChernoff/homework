@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {AppStoreType} from './bll/store'
 import {loadingAC} from './bll/loadingReducer'
@@ -28,11 +27,6 @@ const HW10 = () => {
         setTimeout(() => dispatch(loadingAC(false)), 1500)
         // setTimeout
     }
-
-    useEffect(() => {
-console.log(isLoading);
-
-    }, [isLoading])
 
     return (
         <div id={'hw10'}>

@@ -1,7 +1,22 @@
-.tech {
+.searchingInput {
+    border: 2px solid #0066CC;
+    width: 468px;
+}
 
+.searchingBlock {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin-top: 15px;
+    width: 468px;
+}
+
+.tech {
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .loading {
-
+    font-size: 14px;
+    color: #4D4D4D;
 }

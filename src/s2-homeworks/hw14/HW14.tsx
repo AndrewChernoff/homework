@@ -6,16 +6,16 @@ import SuperDebouncedInput from './common/c8-SuperDebouncedInput/SuperDebouncedI
 import {useSearchParams} from 'react-router-dom'
 
 /*
-* 1 - дописать функцию onChangeTextCallback в SuperDebouncedInput
+* 1 - дописать функцию onChangeTextCallback в SuperDebouncedInput//
 * 2 - дописать функцию sendQuery в HW14
-* 3 - дописать функцию onChangeText в HW14
+* 3 - дописать функцию onChangeText в HW14 ///
 * 4 - сделать стили в соответствии с дизайном
 * 5 - добавить HW14 в HW5/pages/JuniorPlus
 * */
 
 const getTechs = (find: string) => {
     return axios
-        .get<{ techs: string[] }>(
+        .get/* <{ techs: string[] }> */(
             'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test2',
             {params: {find}}
         )
@@ -34,6 +34,9 @@ const HW14 = () => {
         setLoading(true)
         getTechs(value)
             .then((res) => {
+                console.log(res?.data.techs);
+                setTechs(res?.data.techs)
+                setLoading(false)
                 // делает студент
 
                 // сохранить пришедшие данные
@@ -45,11 +48,11 @@ const HW14 = () => {
     const onChangeText = (value: string) => {
         setFind(value)
         // делает студент
-
+        
         // добавить/заменить значение в квери урла
-        // setSearchParams(
-
-        //
+         setSearchParams(
+            { value: value }
+         )
     }
 
     useEffect(() => {
@@ -74,13 +77,16 @@ const HW14 = () => {
                     value={find}
                     onChangeText={onChangeText}
                     onDebouncedChange={sendQuery}
+                    className={s.searchingInput}
                 />
-
+            <div className={s.searchingBlock}>
                 <div id={'hw14-loading'} className={s.loading}>
                     {isLoading ? '...ищем' : <br/>}
                 </div>
-
-                {mappedTechs}
+                <div>
+                    {mappedTechs}
+                </div>
+            </div>
             </div>
         </div>
     )

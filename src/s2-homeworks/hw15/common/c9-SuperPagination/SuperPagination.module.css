@@ -2,10 +2,26 @@
     display: flex;
 }
 
-.text1 {
 
+.select {
+    box-sizing: border-box;
+    width: 39px;
+    height: 24px;
+    background: #FFFFFF;
+    border: 1px solid #ECEBEB;
+    border-radius: 2px;
+}
+
+.text1 {
+    width: 63px;
+    height: 17px;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .text2 {
-
+    width: 115px;
+    height: 17px;
+    font-weight: 400;
+    font-size: 14px;
 }

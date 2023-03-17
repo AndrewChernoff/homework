@@ -5,9 +5,10 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import { Loader } from '../hw10/Loader'
 
 /*
-* 1 - дописать SuperPagination
+* 1 - дописать SuperPagination//
 * 2 - дописать SuperSort
 * 3 - проверить pureChange тестами
 * 3 - дописать sendQuery, onChangePagination, onChangeSort в HW15
@@ -21,8 +22,8 @@ type TechType = {
     developer: string
 }
 
-const getTechs = (params: any) => {
-    return axios
+const getTechs = async(params: any) => {
+    return await axios
         .get<{ techs: TechType[], totalCount: number }>(
             'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test3',
             {params}
@@ -48,19 +49,22 @@ const HW15 = () => {
                 // делает студент
 
                 // сохранить пришедшие данные
-
+                res && setTechs(res.data.techs);
+                res && setTotalCount(res.data.totalCount)
                 //
+                setLoading(false)
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
 
-        // setPage(
-        // setCount(
+        setPage(newPage)
+        setCount(newCount)
 
-        // sendQuery(
-        // setSearchParams(
+        sendQuery({page: newPage, count: newCount})
+        const params = {page: JSON.stringify(newPage), count: JSON.stringify(newCount)}
+        setSearchParams(params)
 
         //
     }
@@ -68,11 +72,11 @@ const HW15 = () => {
     const onChangeSort = (newSort: string) => {
         // делает студент
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
+        setSort(newSort)
+        setPage(1) // при сортировке сбрасывать на 1 страницу
 
-        // sendQuery(
-        // setSearchParams(
+        sendQuery({page: page, count: count})
+        setSearchParams({page: JSON.stringify(page), count: JSON.stringify(count)})
 
         //
     }
@@ -101,13 +105,17 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                <div className={s.paginationBlock}>
+
+                {idLoading && <div id={'hw15-loading'} className={s.loading}><div style={{display: 'flex', justifyContent:'center', alignItems: 'center', marginTop: '10%'}}><Loader/></div></div>}
 
                 <SuperPagination
                     page={page}
                     itemsCountForPage={count}
                     totalCount={totalCount}
                     onChange={onChangePagination}
+                    changeCount={setCount}//
+                    count={count}//
                 />
 
                 <div className={s.rowHeader}>
@@ -121,8 +129,10 @@ const HW15 = () => {
                         <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
                     </div>
                 </div>
-
-                {mappedTechs}
+                <div className={s.techItems}> 
+                    {mappedTechs}
+                </div>
+            </div>
             </div>
         </div>
     )

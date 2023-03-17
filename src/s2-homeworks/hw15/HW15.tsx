@@ -81,6 +81,13 @@ const HW15 = () => {
         //
     }
 
+    const changeCount = (number: number) => {
+        setCount(number)
+        const params = {page: JSON.stringify(page), count: JSON.stringify(number)}
+        setSearchParams(params)
+        sendQuery(params)
+    }
+
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
         sendQuery({page: params.page, count: params.count})
@@ -114,7 +121,7 @@ const HW15 = () => {
                     itemsCountForPage={count}
                     totalCount={totalCount}
                     onChange={onChangePagination}
-                    changeCount={setCount}//
+                    changeCount={changeCount}//
                     count={count}//
                 />
 

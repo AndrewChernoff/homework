@@ -77,8 +77,6 @@ const HW15 = () => {
 
         sendQuery({page: page, count: count})
         setSearchParams({page: JSON.stringify(page), count: JSON.stringify(count)})
-
-        //
     }
 
     const changeCount = (number: number) => {
@@ -95,7 +93,17 @@ const HW15 = () => {
         setCount(+params.count || 4)
     }, [])
 
-    const mappedTechs = techs.map(t => (
+    const filteredTechs = () => {
+        if(sort == '') {
+            return techs
+        } else if (sort === '0tech' || sort === '0developer') { 
+            return techs
+         } else if  (sort === '1tech' || sort === '1developer') {
+            return [...techs].reverse()
+        } 
+    }
+
+    const mappedTechs = /* techs */filteredTechs()?.map(t => (
         <div key={t.id} className={s.row}>
             <div id={'hw15-tech-' + t.id} className={s.tech}>
                 {t.tech}
@@ -137,7 +145,7 @@ const HW15 = () => {
                     </div>
                 </div>
                 <div className={s.techItems}> 
-                    {mappedTechs}
+                    { mappedTechs }
                 </div>
             </div>
             </div>

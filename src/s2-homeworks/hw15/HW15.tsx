@@ -93,17 +93,22 @@ const HW15 = () => {
         setCount(+params.count || 4)
     }, [])
 
-    const filteredTechs = () => {
+    const filteredTechs = (): TechType[] => {
         if(sort == '') {
             return techs
         } else if (sort === '0tech' || sort === '0developer') { 
-            return techs
+            return [...techs].sort((a, b) => a.id - b.id)
          } else if  (sort === '1tech' || sort === '1developer') {
-            return [...techs].reverse()
-        } 
+            return [...techs].sort((a, b) => b.id - a.id)
+        } else {
+            return techs
+        }
     }
 
-    const mappedTechs = /* techs */filteredTechs()?.map(t => (
+    console.log(filteredTechs());
+    
+
+    const mappedTechs = /* techs */filteredTechs().map(t => (
         <div key={t.id} className={s.row}>
             <div id={'hw15-tech-' + t.id} className={s.tech}>
                 {t.tech}

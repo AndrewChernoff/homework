@@ -23,7 +23,7 @@ type TechType = {
 }
 
 type ParamsType = {
-    sort: string
+    sort?: string
     page: number
     count: number
 }
@@ -94,25 +94,13 @@ const HW15 = () => {
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({sort: params.sort, page: +params.page, count: +params.count})
+        /* sendQuery({page: +params.page, count: +params.count}) */
+        sendQuery({page: page, count: count})
+        console.log(searchParams);
+        
         setPage(+params.page || 1)
         setCount(+params.count || 4)
     }, [])
-
-    /* const filteredTechs = (): TechType[] => {
-        if(sort == '') {
-            return techs
-        } else if (sort === '0tech' || sort === '0developer') { 
-            return [...techs].sort((a, b) => a.id - b.id)
-         } else if  (sort === '1tech' || sort === '1developer') {
-            return [...techs].sort((a, b) => b.id - a.id)
-        } else {
-            return techs
-        }
-    }
-
-    console.log(filteredTechs()); */
-    
 
     const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>

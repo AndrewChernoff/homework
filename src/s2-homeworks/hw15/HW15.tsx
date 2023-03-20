@@ -22,7 +22,13 @@ type TechType = {
     developer: string
 }
 
-const getTechs = async(params: any) => {
+type ParamsType = {
+    sort: string
+    page: number
+    count: number
+}
+
+const getTechs = async(params: ParamsType) => {
     return await axios
         .get<{ techs: TechType[], totalCount: number }>(
             'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test3',
@@ -42,7 +48,7 @@ const HW15 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
-    const sendQuery = (params: any) => {
+    const sendQuery = (params: ParamsType) => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
@@ -62,7 +68,7 @@ const HW15 = () => {
         setPage(newPage)
         setCount(newCount)
 
-        sendQuery({page: newPage, count: newCount})
+        sendQuery({sort: sort, page: newPage, count: newCount})
         const params = {page: JSON.stringify(newPage), count: JSON.stringify(newCount)}
         setSearchParams(params)
 
@@ -75,25 +81,25 @@ const HW15 = () => {
         setSort(newSort)
         setPage(1) // при сортировке сбрасывать на 1 страницу
 
-        sendQuery({page: page, count: count})
-        setSearchParams({page: JSON.stringify(page), count: JSON.stringify(count)})
+        sendQuery({sort: sort, page: page, count: count})
+        setSearchParams({sort: sort, page: JSON.stringify(page), count: JSON.stringify(count)})
     }
 
     const changeCount = (number: number) => {
         setCount(number)
-        const params = {page: JSON.stringify(page), count: JSON.stringify(number)}
-        setSearchParams(params)
+        const params = {sort: sort, page: page, count: number}
+        setSearchParams({sort: sort, page: JSON.stringify(page), count: JSON.stringify(count)})
         sendQuery(params)
     }
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({page: params.page, count: params.count})
+        sendQuery({sort: params.sort, page: +params.page, count: +params.count})
         setPage(+params.page || 1)
         setCount(+params.count || 4)
     }, [])
 
-    const filteredTechs = (): TechType[] => {
+    /* const filteredTechs = (): TechType[] => {
         if(sort == '') {
             return techs
         } else if (sort === '0tech' || sort === '0developer') { 
@@ -105,10 +111,10 @@ const HW15 = () => {
         }
     }
 
-    console.log(filteredTechs());
+    console.log(filteredTechs()); */
     
 
-    const mappedTechs = /* techs */filteredTechs().map(t => (
+    const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>
             <div id={'hw15-tech-' + t.id} className={s.tech}>
                 {t.tech}

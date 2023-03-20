@@ -23,10 +23,11 @@ type TechType = {
 }
 
 type ParamsType = {
-    sort?: string
+    sort: string
     page: number
     count: number
 }
+
 
 const getTechs = async(params: ParamsType) => {
     return await axios
@@ -48,7 +49,7 @@ const HW15 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
-    const sendQuery = (params: ParamsType) => {
+    const sendQuery = (params: any) => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
@@ -68,7 +69,7 @@ const HW15 = () => {
         setPage(newPage)
         setCount(newCount)
 
-        sendQuery({sort: sort, page: newPage, count: newCount})
+        sendQuery({page: newPage, count: newCount})
         const params = {page: JSON.stringify(newPage), count: JSON.stringify(newCount)}
         setSearchParams(params)
 
@@ -82,22 +83,19 @@ const HW15 = () => {
         setPage(1) // при сортировке сбрасывать на 1 страницу
 
         sendQuery({sort: sort, page: page, count: count})
-        setSearchParams({sort: sort, page: JSON.stringify(page), count: JSON.stringify(count)})
+        setSearchParams({page: JSON.stringify(page), count: JSON.stringify(count)})
     }
 
     const changeCount = (number: number) => {
         setCount(number)
-        const params = {sort: sort, page: page, count: number}
-        setSearchParams({sort: sort, page: JSON.stringify(page), count: JSON.stringify(count)})
+        const params = {page: JSON.stringify(page), count: JSON.stringify(number)}
+        setSearchParams(params)
         sendQuery(params)
     }
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        /* sendQuery({sort: sort,page: +params.page, count: +params.count})*/
-        sendQuery({page: page, count: count})
-        console.log(searchParams);
-        
+        sendQuery({page: params.page, count: params.count})
         setPage(+params.page || 1)
         setCount(+params.count || 4)
     }, [])
